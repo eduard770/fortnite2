@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#101a20">
+  <title>Vertex — Freebuild</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23121b1c'/%3E%3Cpath d='M4 9h9l8 15L30 9h7L20 36z' fill='%23c5ff64'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/three.min.js"></script>
+  <script defer src="models.js?v=6"></script>
+  <script defer src="world.js"></script>
+  <script defer src="game.js?v=7"></script>
+</head>
+<body>
+  <header>
+    <div class="brand" aria-label="Vertex"><svg viewBox="0 0 40 33" aria-hidden="true"><path d="M0 2h10l10 17 5-9h9L20 33zM28 2h11l-4 6H24z"/></svg><b>VERTEX</b></div>
+    <span class="divider"></span><span class="headmode">FREEBUILD</span>
+    <div class="headright"><span class="perf"><i></i><strong id="fps">—</strong> FPS</span><span class="divider"></span>
+      <button id="audioBtn" class="tool" aria-label="Desligar som" title="Som"></button>
+      <button id="fullBtn" class="tool" aria-label="Ecrã inteiro" title="Ecrã inteiro"></button>
+      <button id="menuBtn" class="menuBtn"><span data-icon="menu"></span>Menu <kbd>Esc</kbd></button>
+    </div>
+  </header>
+  <main id="arena">
+    <canvas id="world" aria-label="Arena de construção em terceira pessoa"></canvas>
+    <div class="shade"></div>
+    <div class="hud">
+      <section class="zone"><div class="eyebrow"><span class="live"></span> SESSÃO SOLO</div><h1>Ilha do Pico</h1><div class="zone-sub"><span data-icon="layers"></span>Arena de treino <i></i> 1v1</div></section>
+      <div class="compass"><div id="bearings"></div><div class="needle"></div></div>
+      <aside class="mapbox"><div class="mapimage"><canvas id="map" width="320" height="254"></canvas><span class="map-n">N</span></div><div class="mapfoot"><span><i class="live"></i> FREEBUILD</span><span data-icon="pin"></span></div></aside>
+      <div class="aim"><i></i></div>
+      <div id="focusHint" hidden><kbd>F</kbd> Editar</div>
+      <div id="notice" role="status"></div>
+      <div class="controls" id="controls"><button id="helpBtn"><span data-icon="keyboard"></span>Controlos <kbd>H</kbd></button><div class="quickkeys"><div><kbd>W A S D</kbd> Mover</div><div><kbd>Espaço</kbd> Saltar</div><div><kbd>F</kbd> Editar peça</div></div></div>
+      <div class="vitals"><div class="player"><span class="player-icon" data-icon="person"></span><strong>Jogador 01</strong></div><div class="meter shield"><span data-icon="shield"></span><i></i><b>100</b></div><div class="meter health"><span data-icon="plus"></span><i></i><b>100</b></div></div>
+      <button id="enter" class="enter"><span data-icon="play"></span> Entrar na arena <kbd>Enter</kbd></button>
+      <div class="loadout"><div class="material-row"><button id="material" title="Alternar material (T)"><span id="materialIcon"></span><span id="materialName">Madeira</span><b>∞</b><kbd>T</kbd></button></div>
+        <div class="slots" id="slots"></div><div id="selectedName">Picareta</div>
+      </div>
+      <div id="editBar" hidden><b>EDIÇÃO</b> <span><kbd>Rato 1</kbd> Selecionar</span><span><kbd id="confirmKey">F</kbd> Confirmar</span><span><kbd>Rato 2</kbd> Repor</span></div>
+    </div>
+    <div class="overlay" id="overlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialoghead"><div><div class="eyebrow"><span class="live"></span> VERTEX / FREEBUILD</div><h2 id="dialogTitle">Menu da arena</h2></div><button class="tool" id="closeMenu" aria-label="Fechar menu">×</button></div>
+      <nav><button class="tab active" data-tab="session">Sessão</button><button class="tab" data-tab="keys">Controlos</button></nav>
+      <div id="session" class="tabbody"><div class="option"><label for="sens">Sensibilidade do rato</label><output id="sensOut"></output></div><input type="range" id="sens" min="0.3" max="2.8" step=".1">
+        <label class="option">Confirmar edição ao soltar<input type="checkbox" id="releaseEdit"></label><div class="option"><span>Som do jogo</span><button id="soundToggle" class="settingBtn"></button></div>
+        <div class="option"><span>Peças na arena</span><b id="buildCount"></b></div><div class="sessionactions"><button id="respawn">Voltar ao início</button><button id="reset">Reiniciar arena</button></div><div id="resetConfirm" hidden>Repor as construções iniciais?<div class="sessionactions"><button id="doReset">Sim, reiniciar</button><button id="cancelReset">Cancelar</button></div></div>
+      </div><div id="keys" class="tabbody" hidden></div><button id="resume" class="primary">Entrar na arena <span>↵</span></button>
+    </section></div>
+    <div id="error" hidden></div>
+  </main>
+</body></html>
